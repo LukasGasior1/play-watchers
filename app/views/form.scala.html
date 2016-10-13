@@ -1,0 +1,13 @@
+@(form: Form[WatcherFormData])(implicit messages: Messages)
+
+@main("Welcome to Play") {
+
+ <h2>Add watcher</h2>
+
+ @helper.form(action = routes.HomeController.submitForm()) {
+  @helper.inputText(form("url"))
+  @helper.inputText(form("expectedTitle"))
+  <input type="submit" />
+ }
+
+}

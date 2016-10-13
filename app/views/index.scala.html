@@ -1,0 +1,30 @@
+@(watchers: Seq[(Watcher, WatcherStatus)])
+
+@main("Welcome to Play") {
+
+ <h2>Welcome</h2>
+
+ <table>
+  <tr>
+   <th>Url</th>
+   <th>Expected title</th>
+   <th>Status</th>
+  </tr>
+
+ @for((watcher, watcherStatus) <- watchers) {
+  <tr>
+   <td>@watcher.url</td>
+   <td>@watcher.expectedTitle</td>
+   <td>
+    @watcherStatus match {
+     case WatcherStatus.Success => { <img src="/assets/images/success.png" alt="Success" /> }
+     case WatcherStatus.Failure(reason) => { <img src="/assets/images/failure.png" alt="Failure" /> (@reason) }
+    }
+   </td>
+  </tr>
+ }
+ </table>
+
+ <a href="/form">Add watcher</a>
+
+}
